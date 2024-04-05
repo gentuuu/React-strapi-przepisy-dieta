@@ -1,0 +1,27 @@
+@import './../../styles.scss';
+
+.page-diet{
+    margin-top: 35px; 
+    &-content{
+        display: flex;
+        @include breakpoint(tab-land){
+            flex-direction: column-reverse;
+        }
+    }
+    .diet-items{
+        margin-left: 35px;
+        grid-template-columns: repeat(3, 1fr);
+        @include breakpoint(big-land){
+            grid-template-columns: repeat(2, 1fr);
+        }
+        @include breakpoint(tab-land){
+            margin-left: 0px;
+        }
+        @include breakpoint(xs){
+            grid-template-columns: repeat(1, 1fr);
+            
+        }
+    }
+
+   
+}
