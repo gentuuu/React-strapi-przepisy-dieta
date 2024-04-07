@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "kategorie",
+  "info": {
+    "singularName": "kategoria",
+    "pluralName": "kategorie",
+    "displayName": "Kategorie"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "przepisy": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::przepis.przepis",
+      "inversedBy": "kategoria"
+    }
+  }
+}

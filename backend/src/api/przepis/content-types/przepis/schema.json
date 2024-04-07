@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "przepisy",
+  "info": {
+    "singularName": "przepis",
+    "pluralName": "przepisy",
+    "displayName": "Przepisy",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Text": {
+      "type": "richtext"
+    },
+    "kategoria": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::kategoria.kategoria",
+      "mappedBy": "przepisy"
+    }
+  }
+}
