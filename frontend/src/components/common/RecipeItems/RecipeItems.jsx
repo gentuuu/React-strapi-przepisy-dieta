@@ -1,129 +1,88 @@
 import './RecipeItems.scss'
-import Przepis  from '../../../assets/przepis.jpg'
-
 import { FaChartSimple, FaClock, FaUserLarge  } from "react-icons/fa6";
+import { useQuery, gql } from '@apollo/client'
+
+const RECIPES = gql`
+query{
+  przepisy{
+    data{
+      id
+      attributes{
+        title
+        Slug
+        Image{
+          data{
+            attributes{
+              url
+            }
+          }
+        }
+        Description
+        Person
+		Time
+        Level
+        kategoria{
+          data{
+            id
+            attributes{
+              Title
+            }
+          }
+        }
+      }
+    }
+  }
+}
+`
 
 
 export const RecipeItems = () => {
-  return (
+
+    const { loading, error, data } = useQuery(RECIPES);
+  
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error :(</p>;
+
+    return (
     <>
         <div className="recipe-right">
             <div className="recipe-right-primary">Przepisy</div>
             <div className="recipe-right-items">
-                <a to="" className="recipe-item" >
+                {data.przepisy.data.map(recipe =>(
+                    <a key={recipe.id} href={`/przepisy/${recipe.attributes.Slug}`} className="recipe-item" >
                     <div className="recipe-item__img">
-                        <img src={Przepis} alt=""/>
+                        <img src={`http://localhost:1337${recipe.attributes.Image.data.attributes.url}`} alt="" />
                         <div className="recipe-item__category">
-                            <div className="recipe-item__category-item">Mrożona</div>
-                            <div className="recipe-item__category-item">Deser</div>
+                            {recipe.attributes.kategoria.data.map(category => (
+                                <div key={category.id} className="recipe-item__category-item">{category.attributes.Title}</div>
+                            ))}
                         </div>
                         <div className="recipe-item__hover">
                             <div className="recipe-item__hover-items">
                                 <div className="recipe-item__hover-item lavel">
                                     <FaChartSimple />
-                                    <p>Łatwy</p>
+                                    <p>{recipe.attributes.Level}</p>
                                 </div>
                                 <div className="recipe-item__hover-item time">
                                     <FaClock />
-                                    <p>10 min</p>
+                                    <p>{recipe.attributes.Time}</p>
                                 </div>
                                 <div className="recipe-item__hover-item person">
                                     <FaUserLarge />
-                                    <p>2 osoby</p>
+                                    <p>{recipe.attributes.Person} osoby</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div className="recipe-item__title">
-                        Lorem ipsum
+                        {recipe.attributes.title}
                     </div>
                 </a>
-                <a to="" className="recipe-item" >
-                    <div className="recipe-item__img">
-                        <img src={Przepis} alt=""/>
-                        <div className="recipe-item__category">
-                            <div className="recipe-item__category-item">Mrożona</div>
-                            <div className="recipe-item__category-item">Deser</div>
-                        </div>
-                        <div className="recipe-item__hover">
-                            <div className="recipe-item__hover-items">
-                                <div className="recipe-item__hover-item lavel">
-                                    <img src="" alt=""/>
-                                    <p>Łatwy</p>
-                                </div>
-                                <div className="recipe-item__hover-item time">
-                                    <img src="" alt=""/>
-                                    <p>10 min</p>
-                                </div>
-                                <div className="recipe-item__hover-item person">
-                                    <img src="" alt=""/>
-                                    <p>2 osoby</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="recipe-item__title">
-                        Lorem ipsum
-                    </div>
-                </a>
-                <a to="" className="recipe-item" >
-                    <div className="recipe-item__img">
-                        <img src={Przepis} alt=""/>
-                        <div className="recipe-item__category">
-                            <div className="recipe-item__category-item">Mrożona</div>
-                            <div className="recipe-item__category-item">Deser</div>
-                        </div>
-                        <div className="recipe-item__hover">
-                            <div className="recipe-item__hover-items">
-                                <div className="recipe-item__hover-item lavel">
-                                    <img src="" alt=""/>
-                                    <p>Łatwy</p>
-                                </div>
-                                <div className="recipe-item__hover-item time">
-                                    <img src="" alt=""/>
-                                    <p>10 min</p>
-                                </div>
-                                <div className="recipe-item__hover-item person">
-                                    <img src="" alt=""/>
-                                    <p>2 osoby</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="recipe-item__title">
-                        Lorem ipsum
-                    </div>
-                </a>
-                <a to="" className="recipe-item" >
-                    <div className="recipe-item__img">
-                        <img src={Przepis} alt=""/>
-                        <div className="recipe-item__category">
-                            <div className="recipe-item__category-item">Mrożona</div>
-                            <div className="recipe-item__category-item">Deser</div>
-                        </div>
-                        <div className="recipe-item__hover">
-                            <div className="recipe-item__hover-items">
-                                <div className="recipe-item__hover-item lavel">
-                                    <img src="" alt=""/>
-                                    <p>Łatwy</p>
-                                </div>
-                                <div className="recipe-item__hover-item time">
-                                    <img src="" alt=""/>
-                                    <p>10 min</p>
-                                </div>
-                                <div className="recipe-item__hover-item person">
-                                    <img src="" alt=""/>
-                                    <p>2 osoby</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="recipe-item__title">
-                        Lorem ipsum
-                    </div>
-                </a>
+                ))}
+                
+           
             </div>
         </div>
     </>
-  )
+    )
 }

@@ -4,15 +4,24 @@ import Przepis from '../../assets/przepis.jpg'
 import DietItems from '../common/DietItems/DietItems';
 import Blog from '../common/Blog/Blog';
 import { RecipeItems } from '../common/RecipeItems/RecipeItems';
+import { gql, useQuery } from '@apollo/client';
+
+
+
+
 
 const RecipeItem = () => {
+    
+
+    
+
   return (
     <>
         <div className="page-recipe">
             <div className="container">
                 <div className="page-recipe-row">
                     <div className="page-recipe-content">
-                        <div className="page-recipe__title">Lorem ipsum</div>
+                        <div className="page-recipe__title">asd</div>
                         <div className="page-recipe-details">
                             <div className="page-recipe__img">
                                 <img src={Przepis} alt="" />

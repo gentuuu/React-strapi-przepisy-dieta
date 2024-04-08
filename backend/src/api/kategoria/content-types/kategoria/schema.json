@@ -4,7 +4,8 @@
   "info": {
     "singularName": "kategoria",
     "pluralName": "kategorie",
-    "displayName": "Kategorie"
+    "displayName": "Kategorie",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -16,7 +17,7 @@
     },
     "przepisy": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "manyToMany",
       "target": "api::przepis.przepis",
       "inversedBy": "kategoria"
     }

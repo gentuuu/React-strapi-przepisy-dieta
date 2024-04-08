@@ -12,15 +12,60 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "Title": {
+    "title": {
       "type": "string"
     },
-    "Text": {
+    "Description": {
       "type": "richtext"
+    },
+    "Text": {
+      "type": "customField",
+      "options": {
+        "preset": "toolbarBalloon"
+      },
+      "customField": "plugin::ckeditor5.CKEditor"
+    },
+    "Slug": {
+      "type": "customField",
+      "options": {
+        "pattern": "title"
+      },
+      "customField": "plugin::slug.slug"
+    },
+    "Level": {
+      "type": "enumeration",
+      "enum": [
+        "Łatwy",
+        "Średni",
+        "Trudny"
+      ]
+    },
+    "Time": {
+      "type": "string"
+    },
+    "Person": {
+      "type": "string"
+    },
+    "Image": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "Ingredients": {
+      "type": "customField",
+      "options": {
+        "preset": "toolbarBalloon"
+      },
+      "customField": "plugin::ckeditor5.CKEditor"
     },
     "kategoria": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "manyToMany",
       "target": "api::kategoria.kategoria",
       "mappedBy": "przepisy"
     }

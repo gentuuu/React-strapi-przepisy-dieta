@@ -1,21 +1,51 @@
 import './Blog.scss'
-import Przepis  from '../../../assets/przepis.jpg'
+import { gql, useQuery } from '@apollo/client'
+
+const BLOGS = gql`
+query{
+  artykuly{
+    data{
+      attributes{
+        title
+        Slug
+        Description
+				Text
+        Image{
+          data{
+            attributes{
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+}
+`
+
 
 const Blog = () => {
+    const { loading, error, data } = useQuery(BLOGS);
+  
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error :(</p>;
+
   return (
     <>
         <div className="article">
             <div className="container">
                 <div className="article-title">Artykuły</div>
                 <div className="article-items">
-                    <a className="article-item" to=""> 
-                        <div className="article-item__img">
-                            <img src={Przepis} alt=""/>
-                        </div>
-                        <div className="article-item__title">
-                            asdasdasd
-                        </div>
-                    </a>
+                    {data.artykuly.data.map(blog =>(
+                        <a key={blog.id} className="article-item" href={`/bogs/${blog.id}`}> 
+                            <div className="article-item__img">
+                                <img src={`http://localhost:1337${blog.attributes.Image.data.attributes.url}`} alt="" />
+                            </div>
+                            <div className="article-item__title">
+                                {blog.attributes.title}
+                            </div>
+                        </a>
+                    ))}
                 </div>
             </div>
         </div>

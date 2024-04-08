@@ -1,8 +1,74 @@
 import './Diet.scss'
-import Przepis from '../../assets/przepis.jpg'
+import { useQuery, gql } from '@apollo/client'
+import parse from 'html-react-parser';
+
+
+const DIET = gql`
+query{
+  diety{
+    data{
+      id
+      attributes{
+        title
+        Description
+		Slug
+        Text
+		Image{
+          data{
+            attributes{
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+}
+`
+
+const RECIPES = gql`
+query{
+  przepisy{
+    data{
+      id
+      attributes{
+        title
+        Slug
+        Image{
+          data{
+            attributes{
+              url
+            }
+          }
+        }
+        Description
+        Person
+		Time
+        Level
+        kategoria{
+          data{
+            id
+            attributes{
+              Title
+            }
+          }
+        }
+      }
+    }
+  }
+}
+`
+
 
 
 const Diets = () => {
+
+    const { loading: Dietloading, error: Dieterror, data: Dietdata } = useQuery(DIET);
+    const { loading: Recipeloading, error: Recipeerror, data: Recipedata } = useQuery(RECIPES);
+  
+    if (Dietloading || Recipeloading) return <p>Loading...</p>;
+    if (Dieterror || Recipeerror) return <p>Error :(</p>;
+
 return (
 <>
     <div className="page-diet">
@@ -11,75 +77,35 @@ return (
                 <div className="recipe-left">
                     <div className="recipe-left-primary">Popularne przepisy</div>
                     <div className="recipe-left-items">
-                        <a to="" className="recipe-left-item">
-                            <div className="recipe-left-item__img">
-                                <img src={Przepis} alt="" />
-                            </div>
-                            <div className="recipe-left-item__text">
-                                <div className="recipe-left-item__text-title">Lorem</div>
-                                <div className="recipe-left-item__text-text">lorem ipsum lorem ipsum</div>
-                            </div>
-                        </a>
-                        <a to="" className="recipe-left-item">
-                            <div className="recipe-left-item__img">
-                                <img src={Przepis} alt="" />
-                            </div>
-                            <div className="recipe-left-item__text">
-                                <div className="recipe-left-item__text-title">Lorem</div>
-                                <div className="recipe-left-item__text-text">lorem ipsum lorem ipsum</div>
-                            </div>
-                        </a>
+                        {Recipedata.przepisy.data.map(recipe =>(
+                            <a key={recipe.id} href={`/przepisy/${recipe.id}`} className="recipe-left-item">
+                                <div className="recipe-left-item__img">
+                                    <img src={`http://localhost:1337${recipe.attributes.Image.data.attributes.url}`} alt="" />
+                                </div>
+                                <div className="recipe-left-item__text">
+                                    <div className="recipe-left-item__text-title">{recipe.attributes.title}</div>
+                                    <div className="recipe-left-item__text-text">{recipe.attributes.Description}</div>
+                                </div>
+                            </a>
+
+                        ))}  
                     </div>
                 </div>
                 <div className="diet-items">
-                    <a to="" className="diet-item"> 
+                    {Dietdata.diety.data.map(diet =>(
+                    <a key={diet.id} href={`/diety/${diet.id}`} className="diet-item"> 
                         <div className="diet-item__img">
-                            <img src={Przepis} alt=""/>
+                            <img src={`http://localhost:1337${diet.attributes.Image.data.attributes.url}`} alt="" />
                         </div>
                         <div className="diet-item__title">
-                            ghghngnh
+                            {diet.attributes.title}
                         </div>
                         <div className="diet-item__category">
-                           asdasd
+                            {parse(diet.attributes.Description)}
                         </div>
                         <div className="diet-item__btn"><img src="img/arrow-right-recipe.png" alt=""/></div>
                     </a>
-                    <a to="" className="diet-item"> 
-                        <div className="diet-item__img">
-                            <img src={Przepis} alt=""/>
-                        </div>
-                        <div className="diet-item__title">
-                            ghghngnh
-                        </div>
-                        <div className="diet-item__category">
-                           asdasd
-                        </div>
-                        <div className="diet-item__btn"><img src="img/arrow-right-recipe.png" alt=""/></div>
-                    </a>
-                    <a to="" className="diet-item"> 
-                        <div className="diet-item__img">
-                            <img src={Przepis} alt=""/>
-                        </div>
-                        <div className="diet-item__title">
-                            ghghngnh
-                        </div>
-                        <div className="diet-item__category">
-                           asdasd
-                        </div>
-                        <div className="diet-item__btn"><img src="img/arrow-right-recipe.png" alt=""/></div>
-                    </a>
-                    <a to="" className="diet-item"> 
-                        <div className="diet-item__img">
-                            <img src={Przepis} alt=""/>
-                        </div>
-                        <div className="diet-item__title">
-                            ghghngnh
-                        </div>
-                        <div className="diet-item__category">
-                           asdasd
-                        </div>
-                        <div className="diet-item__btn"><img src="img/arrow-right-recipe.png" alt=""/></div>
-                    </a>
+                    ))}
                 </div>
             </div>
         </div>

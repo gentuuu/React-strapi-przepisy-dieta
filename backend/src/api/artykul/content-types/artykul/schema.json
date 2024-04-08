@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "artykuly",
+  "info": {
+    "singularName": "artykul",
+    "pluralName": "artykuly",
+    "displayName": "Artykuły"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "Slug": {
+      "type": "customField",
+      "options": {
+        "pattern": "title"
+      },
+      "customField": "plugin::slug.slug"
+    },
+    "Image": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "Text": {
+      "type": "customField",
+      "options": {
+        "preset": "toolbarBalloon"
+      },
+      "customField": "plugin::ckeditor5.CKEditor"
+    },
+    "Description": {
+      "type": "richtext"
+    }
+  }
+}

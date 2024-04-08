@@ -362,78 +362,6 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiKategoriaKategoria extends Schema.CollectionType {
-  collectionName: 'kategorie';
-  info: {
-    singularName: 'kategoria';
-    pluralName: 'kategorie';
-    displayName: 'Kategorie';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    Title: Attribute.String;
-    przepisy: Attribute.Relation<
-      'api::kategoria.kategoria',
-      'manyToOne',
-      'api::przepis.przepis'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::kategoria.kategoria',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::kategoria.kategoria',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiPrzepisPrzepis extends Schema.CollectionType {
-  collectionName: 'przepisy';
-  info: {
-    singularName: 'przepis';
-    pluralName: 'przepisy';
-    displayName: 'Przepisy';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    Title: Attribute.String;
-    Text: Attribute.RichText;
-    kategoria: Attribute.Relation<
-      'api::przepis.przepis',
-      'oneToMany',
-      'api::kategoria.kategoria'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::przepis.przepis',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::przepis.przepis',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -860,6 +788,203 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiArtykulArtykul extends Schema.CollectionType {
+  collectionName: 'artykuly';
+  info: {
+    singularName: 'artykul';
+    pluralName: 'artykuly';
+    displayName: 'Artyku\u0142y';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    Slug: Attribute.String &
+      Attribute.CustomField<
+        'plugin::slug.slug',
+        {
+          pattern: 'title';
+        }
+      >;
+    Image: Attribute.Media;
+    Text: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbarBalloon';
+        }
+      >;
+    Description: Attribute.RichText;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::artykul.artykul',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::artykul.artykul',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiDietaDieta extends Schema.CollectionType {
+  collectionName: 'diety';
+  info: {
+    singularName: 'dieta';
+    pluralName: 'diety';
+    displayName: 'Diety';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    Image: Attribute.Media;
+    Text: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbarBalloon';
+        }
+      >;
+    Description: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbarBalloon';
+        }
+      >;
+    Slug: Attribute.String &
+      Attribute.CustomField<
+        'plugin::slug.slug',
+        {
+          pattern: 'title';
+        }
+      >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::dieta.dieta',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::dieta.dieta',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiKategoriaKategoria extends Schema.CollectionType {
+  collectionName: 'kategorie';
+  info: {
+    singularName: 'kategoria';
+    pluralName: 'kategorie';
+    displayName: 'Kategorie';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Title: Attribute.String;
+    przepisy: Attribute.Relation<
+      'api::kategoria.kategoria',
+      'manyToMany',
+      'api::przepis.przepis'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::kategoria.kategoria',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::kategoria.kategoria',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPrzepisPrzepis extends Schema.CollectionType {
+  collectionName: 'przepisy';
+  info: {
+    singularName: 'przepis';
+    pluralName: 'przepisy';
+    displayName: 'Przepisy';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    Description: Attribute.RichText;
+    Text: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbarBalloon';
+        }
+      >;
+    Slug: Attribute.String &
+      Attribute.CustomField<
+        'plugin::slug.slug',
+        {
+          pattern: 'title';
+        }
+      >;
+    Level: Attribute.Enumeration<['\u0141atwy', '\u015Aredni', 'Trudny']>;
+    Time: Attribute.String;
+    Person: Attribute.String;
+    Image: Attribute.Media;
+    Ingredients: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbarBalloon';
+        }
+      >;
+    kategoria: Attribute.Relation<
+      'api::przepis.przepis',
+      'manyToMany',
+      'api::kategoria.kategoria'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::przepis.przepis',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::przepis.przepis',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -870,8 +995,6 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::kategoria.kategoria': ApiKategoriaKategoria;
-      'api::przepis.przepis': ApiPrzepisPrzepis;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
@@ -880,6 +1003,10 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::artykul.artykul': ApiArtykulArtykul;
+      'api::dieta.dieta': ApiDietaDieta;
+      'api::kategoria.kategoria': ApiKategoriaKategoria;
+      'api::przepis.przepis': ApiPrzepisPrzepis;
     }
   }
 }
