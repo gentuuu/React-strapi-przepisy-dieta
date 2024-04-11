@@ -12,7 +12,7 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "Title": {
+    "title": {
       "type": "string"
     },
     "przepisy": {
@@ -20,6 +20,27 @@
       "relation": "manyToMany",
       "target": "api::przepis.przepis",
       "inversedBy": "kategoria"
+    },
+    "slug": {
+      "type": "customField",
+      "customField": "plugin::slug.slug",
+      "options": {
+        "pattern": "title"
+      }
+    },
+    "text": {
+      "type": "richtext"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     }
   }
 }

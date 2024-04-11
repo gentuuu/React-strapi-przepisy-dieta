@@ -35,7 +35,7 @@ return (
               <Link to='/diety' className="navLink">Diety</Link>
             </li>
             <li onClick={removeActive}>
-              <Link to='/blogs' className="navLink">Blogs</Link>
+              <Link to='/artykuly' className="navLink">Blogs</Link>
             </li>
             <li onClick={removeActive}>
               <Link to='/kontakt' className="navLink">Kontakt</Link>

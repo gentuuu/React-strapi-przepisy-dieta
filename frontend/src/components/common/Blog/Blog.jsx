@@ -7,7 +7,7 @@ query{
     data{
       attributes{
         title
-        Slug
+        slug
         Description
 				Text
         Image{
@@ -34,10 +34,10 @@ const Blog = () => {
     <>
         <div className="article">
             <div className="container">
-                <div className="article-title">Artykuły</div>
+                <div className="article-title">Artykuły commmon blog</div>
                 <div className="article-items">
                     {data.artykuly.data.map(blog =>(
-                        <a key={blog.id} className="article-item" href={`/bogs/${blog.id}`}> 
+                        <a key={blog.id} className="article-item" href={`/artykuly/${blog.attributes.slug}`}> 
                             <div className="article-item__img">
                                 <img src={`http://localhost:1337${blog.attributes.Image.data.attributes.url}`} alt="" />
                             </div>

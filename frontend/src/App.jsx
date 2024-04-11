@@ -8,6 +8,9 @@ import Diets from './components/Diet/Diets'
 import Blogs from './components/Blogs/Blogs'
 import RecipeItem from './components/Recipe/RecipeItem'
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client"
+import DietItem from './components/Diet/DietItem'
+import BlogItem from './components/common/Blog/BlogItem'
+import Category from './components/Category/Category'
 
 
 // initialize apollo client
@@ -28,9 +31,12 @@ function App() {
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/przepisy' element={<Recipe />} />
-            <Route path='/przepisy/:id' element={<RecipeItem />} />
+            <Route path='/przepisy/:slug' element={<RecipeItem />} />
             <Route path='/diety' element={<Diets />} />
-            <Route path='/blogs' element={<Blogs />} />
+            <Route path='/diety/:slug' element={<DietItem />} />
+            <Route path='/artykuly' element={<Blogs />} />
+            <Route path='/artykuly/:slug' element={<BlogItem />} />
+            <Route path='/kategorie/:slug' element={<Category />} />
           </Routes>
           <Footer />
         </ApolloProvider>

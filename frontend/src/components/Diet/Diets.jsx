@@ -11,9 +11,9 @@ query{
       attributes{
         title
         Description
-		Slug
+		    slug
         Text
-		Image{
+		    Image{
           data{
             attributes{
               url
@@ -33,7 +33,7 @@ query{
       id
       attributes{
         title
-        Slug
+        slug
         Image{
           data{
             attributes{
@@ -43,13 +43,13 @@ query{
         }
         Description
         Person
-		Time
+		    Time
         Level
         kategoria{
           data{
             id
             attributes{
-              Title
+              title
             }
           }
         }
@@ -78,13 +78,13 @@ return (
                     <div className="recipe-left-primary">Popularne przepisy</div>
                     <div className="recipe-left-items">
                         {Recipedata.przepisy.data.map(recipe =>(
-                            <a key={recipe.id} href={`/przepisy/${recipe.id}`} className="recipe-left-item">
+                            <a key={recipe.id} href={`/przepisy/${recipe.attributes.slug}`} className="recipe-left-item">
                                 <div className="recipe-left-item__img">
                                     <img src={`http://localhost:1337${recipe.attributes.Image.data.attributes.url}`} alt="" />
                                 </div>
                                 <div className="recipe-left-item__text">
                                     <div className="recipe-left-item__text-title">{recipe.attributes.title}</div>
-                                    <div className="recipe-left-item__text-text">{recipe.attributes.Description}</div>
+                                    <div className="recipe-left-item__text-text">{recipe.attributes.Description.substring(0, 50)}</div>
                                 </div>
                             </a>
 
@@ -93,7 +93,7 @@ return (
                 </div>
                 <div className="diet-items">
                     {Dietdata.diety.data.map(diet =>(
-                    <a key={diet.id} href={`/diety/${diet.id}`} className="diet-item"> 
+                    <a key={diet.id} href={`/diety/${diet.attributes.slug}`} className="diet-item"> 
                         <div className="diet-item__img">
                             <img src={`http://localhost:1337${diet.attributes.Image.data.attributes.url}`} alt="" />
                         </div>
@@ -101,7 +101,7 @@ return (
                             {diet.attributes.title}
                         </div>
                         <div className="diet-item__category">
-                            {parse(diet.attributes.Description)}
+                            {parse(diet.attributes.Description.substring(0, 50))}
                         </div>
                         <div className="diet-item__btn"><img src="img/arrow-right-recipe.png" alt=""/></div>
                     </a>

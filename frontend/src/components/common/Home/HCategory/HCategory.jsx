@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-key */
 import './HCategory.scss'
-import Przepis from '../../../../assets/przepis.jpg'
+
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -10,16 +10,28 @@ import { gql, useQuery } from '@apollo/client';
 
 
 const CATEGORY =gql`
+
 query{
   kategorie{
     data{
       id
       attributes{
-        Title
-        przepisy{
+        title
+        slug
+        text
+        image{
           data{
             attributes{
+              url
+            }
+          }
+        }
+        przepisy{
+          data{
+    
+            attributes{
               title
+            
             }
           }
         }
@@ -28,7 +40,6 @@ query{
     }
   }
 }
-
 `
 
 
@@ -52,13 +63,13 @@ const HCategory = () => {
                     className="mySwiper">
                         {data.kategorie.data.map(category =>(
                             <SwiperSlide>
-                                <div key={category.id} href="" className="category-item">
+                                <a key={category.id} href={`/kategorie/${category.attributes.slug}`} className="category-item">
                                     <div className="category-item__img">
-                                        <img src={Przepis} alt=""/>
+                                      <img src={`http://localhost:1337${category.attributes.image.data.attributes.url}`} alt="" />
                                     </div>
-                                    <div className="category-item__title">{category.attributes.Title}</div>
+                                    <div className="category-item__title">{category.attributes.title}</div>
                                     <div className="category-item__all"> {category.attributes.przepisy.data.length} przepisów</div>
-                                </div>
+                                </a>
                             </SwiperSlide>
                         ))} 
                     </Swiper>

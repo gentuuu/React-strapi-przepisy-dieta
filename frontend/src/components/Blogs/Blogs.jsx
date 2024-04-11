@@ -7,9 +7,9 @@ query{
     data{
       attributes{
         title
-        Slug
+        slug
         Description
-		Text
+		    Text
         Image{
           data{
             attributes{
@@ -39,7 +39,7 @@ const Blogs = () => {
                 <div className="page-blogs-content">
                     <div className="page-blogs-items">
                         {data.artykuly.data.map(blog =>(
-                            <a key={blog.id} className="page-blogs-item" href={`/bogs/${blog.id}`}> 
+                            <a key={blog.id} className="page-blogs-item" href={`/artykuly/${blog.attributes.slug}`}> 
                                 <div className="page-blogs-item__img">
                                     <img src={`http://localhost:1337${blog.attributes.Image.data.attributes.url}`} alt="" />
                                 </div>
@@ -47,7 +47,7 @@ const Blogs = () => {
                                     <div className="page-blogs-item__title">
                                         {blog.attributes.title}
                                     </div>
-                                    <div className="page-blogs-item__text">{blog.attributes.Description}</div>
+                                    <div className="page-blogs-item__text">{blog.attributes.Description.substring(0, 50)}</div>
                                 </div>  
                             </a>
                         ))}     

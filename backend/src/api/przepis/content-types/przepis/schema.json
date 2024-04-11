@@ -25,7 +25,7 @@
       },
       "customField": "plugin::ckeditor5.CKEditor"
     },
-    "Slug": {
+    "slug": {
       "type": "customField",
       "options": {
         "pattern": "title"
@@ -47,14 +47,15 @@
       "type": "string"
     },
     "Image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     },
     "Ingredients": {
       "type": "customField",

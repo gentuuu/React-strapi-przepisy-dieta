@@ -788,19 +788,59 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface PluginSlugifySlug extends Schema.CollectionType {
+  collectionName: 'slugs';
+  info: {
+    singularName: 'slug';
+    pluralName: 'slugs';
+    displayName: 'slug';
+  };
+  options: {
+    draftAndPublish: false;
+    comment: '';
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
+  };
+  attributes: {
+    slug: Attribute.Text;
+    count: Attribute.Integer;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::slugify.slug',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'plugin::slugify.slug',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiArtykulArtykul extends Schema.CollectionType {
   collectionName: 'artykuly';
   info: {
     singularName: 'artykul';
     pluralName: 'artykuly';
     displayName: 'Artyku\u0142y';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
     title: Attribute.String;
-    Slug: Attribute.String &
+    slug: Attribute.String &
       Attribute.CustomField<
         'plugin::slug.slug',
         {
@@ -862,7 +902,7 @@ export interface ApiDietaDieta extends Schema.CollectionType {
           preset: 'toolbarBalloon';
         }
       >;
-    Slug: Attribute.String &
+    slug: Attribute.String &
       Attribute.CustomField<
         'plugin::slug.slug',
         {
@@ -899,12 +939,21 @@ export interface ApiKategoriaKategoria extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    Title: Attribute.String;
+    title: Attribute.String;
     przepisy: Attribute.Relation<
       'api::kategoria.kategoria',
       'manyToMany',
       'api::przepis.przepis'
     >;
+    slug: Attribute.String &
+      Attribute.CustomField<
+        'plugin::slug.slug',
+        {
+          pattern: 'title';
+        }
+      >;
+    text: Attribute.RichText;
+    image: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -944,7 +993,7 @@ export interface ApiPrzepisPrzepis extends Schema.CollectionType {
           preset: 'toolbarBalloon';
         }
       >;
-    Slug: Attribute.String &
+    slug: Attribute.String &
       Attribute.CustomField<
         'plugin::slug.slug',
         {
@@ -1003,6 +1052,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'plugin::slugify.slug': PluginSlugifySlug;
       'api::artykul.artykul': ApiArtykulArtykul;
       'api::dieta.dieta': ApiDietaDieta;
       'api::kategoria.kategoria': ApiKategoriaKategoria;

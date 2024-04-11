@@ -9,7 +9,7 @@ query{
       id
       attributes{
         title
-        Slug
+        slug
         Image{
           data{
             attributes{
@@ -19,13 +19,22 @@ query{
         }
         Description
         Person
-		Time
+		    Time
         Level
         kategoria{
           data{
             id
             attributes{
-              Title
+              title
+              text
+              slug
+              image{
+                data{
+                  attributes{
+                    url
+                  }
+                }
+              }
             }
           }
         }
@@ -49,12 +58,12 @@ export const RecipeItems = () => {
             <div className="recipe-right-primary">Przepisy</div>
             <div className="recipe-right-items">
                 {data.przepisy.data.map(recipe =>(
-                    <a key={recipe.id} href={`/przepisy/${recipe.attributes.Slug}`} className="recipe-item" >
+                    <a key={recipe.id} href={`/przepisy/${recipe.attributes.slug}`} className="recipe-item" >
                     <div className="recipe-item__img">
                         <img src={`http://localhost:1337${recipe.attributes.Image.data.attributes.url}`} alt="" />
                         <div className="recipe-item__category">
                             {recipe.attributes.kategoria.data.map(category => (
-                                <div key={category.id} className="recipe-item__category-item">{category.attributes.Title}</div>
+                                <div key={category.id} className="recipe-item__category-item">{category.attributes.title}</div>
                             ))}
                         </div>
                         <div className="recipe-item__hover">

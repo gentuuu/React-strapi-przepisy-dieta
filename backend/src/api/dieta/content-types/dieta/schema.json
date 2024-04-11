@@ -40,7 +40,7 @@
       },
       "customField": "plugin::ckeditor5.CKEditor"
     },
-    "Slug": {
+    "slug": {
       "type": "customField",
       "options": {
         "pattern": "title"
