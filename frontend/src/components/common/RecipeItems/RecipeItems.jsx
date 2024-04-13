@@ -55,7 +55,7 @@ export const RecipeItems = () => {
     return (
     <>
         <div className="recipe-right">
-            <div className="recipe-right-primary">Przepisy</div>
+            <div className="recipe-right-primary">Kulinarne Inspiracje: Odkryj Nasze Wyborne Przepisy na Zdrowe i Pyszne Posiłki</div>
             <div className="recipe-right-items">
                 {data.przepisy.data.map(recipe =>(
                     <a key={recipe.id} href={`/przepisy/${recipe.attributes.slug}`} className="recipe-item" >

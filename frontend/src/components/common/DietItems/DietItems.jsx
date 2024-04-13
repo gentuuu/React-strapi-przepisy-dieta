@@ -37,7 +37,7 @@ const DietItems = () => {
     <>
         <div className="diet">
             <div className="container">
-                <div className="diet-title"> Polecane kawy </div>
+                <div className="diet-title">Odkryj Siłę Zdrowego Żywienia: Nasze Wyjątkowe Diety dla Twojego Lepszego Ja</div>
                 <div className="diet-items">
                     {Dietdata.diety.data.map(diet =>(
                         <a key={diet.id} href={`/diety/${diet.attributes.slug}`} className="diet-item"> 
@@ -54,8 +54,6 @@ const DietItems = () => {
                             <div className="diet-item__btn"><img src="img/arrow-right-recipe.png" alt=""/></div>
                         </a>
                     ))}
-                    
-
                 </div>
             </div>
         </div>

@@ -84,29 +84,35 @@ return (
                                 </div>
                                 <div className="recipe-left-item__text">
                                     <div className="recipe-left-item__text-title">{recipe.attributes.title}</div>
-                                    <div className="recipe-left-item__text-text">{recipe.attributes.Description.substring(0, 50)}</div>
+                                    {/* <div className="recipe-left-item__text-text">{recipe.attributes.Description.substring(0, 30)}</div> */}
                                 </div>
                             </a>
 
                         ))}  
                     </div>
                 </div>
-                <div className="diet-items">
+                <div className="diet-items-content">
+                  <div className="diet-title">
+                    Zdrowe odżywianie: Smaczne i Zrównoważone Diety dla Twojego Codziennego Dobrostanu
+                  </div>
+                  <div className="diet-items">
                     {Dietdata.diety.data.map(diet =>(
-                    <a key={diet.id} href={`/diety/${diet.attributes.slug}`} className="diet-item"> 
-                        <div className="diet-item__img">
-                            <img src={`http://localhost:1337${diet.attributes.Image.data.attributes.url}`} alt="" />
-                        </div>
-                        <div className="diet-item__title">
-                            {diet.attributes.title}
-                        </div>
-                        <div className="diet-item__category">
-                            {parse(diet.attributes.Description.substring(0, 50))}
-                        </div>
-                        <div className="diet-item__btn"><img src="img/arrow-right-recipe.png" alt=""/></div>
-                    </a>
+                      <a key={diet.id} href={`/diety/${diet.attributes.slug}`} className="diet-item"> 
+                          <div className="diet-item__img">
+                              <img src={`http://localhost:1337${diet.attributes.Image.data.attributes.url}`} alt="" />
+                          </div>
+                          <div className="diet-item__title">
+                              {diet.attributes.title}
+                          </div>
+                          <div className="diet-item__category">
+                              {parse(diet.attributes.Description.substring(0, 50))}
+                          </div>
+                          <div className="diet-item__btn"><img src="img/arrow-right-recipe.png" alt=""/></div>
+                      </a>
                     ))}
+                  </div>
                 </div>
+                
             </div>
         </div>
     </div>

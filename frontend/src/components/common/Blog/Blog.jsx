@@ -34,9 +34,9 @@ const Blog = () => {
     <>
         <div className="article">
             <div className="container">
-                <div className="article-title">Artykuły commmon blog</div>
+                <div className="article-title">Rozwijaj Świadomość Żywieniową: Przegląd Naszych Artykułów o Zdrowym Odżywianiu</div>
                 <div className="article-items">
-                    {data.artykuly.data.map(blog =>(
+                    {data.artykuly.data.slice(0, 3).sort(() => Math.random() - 0.5).map(blog =>(
                         <a key={blog.id} className="article-item" href={`/artykuly/${blog.attributes.slug}`}> 
                             <div className="article-item__img">
                                 <img src={`http://localhost:1337${blog.attributes.Image.data.attributes.url}`} alt="" />

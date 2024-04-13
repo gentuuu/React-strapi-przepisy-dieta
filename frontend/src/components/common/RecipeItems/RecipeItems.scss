@@ -20,11 +20,11 @@
         grid-template-columns: repeat(3, 1fr);
         grid-gap: 31px;
         margin-top: 30px; 
+        @include breakpoint(big-land){
+            grid-template-columns: repeat(2, 1fr);
+        }
         @include breakpoint (tab-land){
             margin-bottom: 30px;
-        }
-        @include breakpoint (tab-port){
-            grid-template-columns: repeat(2, 1fr);
         }
         @include breakpoint (xs){
             grid-template-columns: repeat(1, 1fr);

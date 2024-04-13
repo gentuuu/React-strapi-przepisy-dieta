@@ -8,7 +8,9 @@ const Header = () => {
                 <div className="container">
                     <div className="header-primary">Przepisy dla ciebie</div>
                     <div className="header-secondary">Poznaj najlepsze przepisy i diety</div>
-                    <div className="header-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos, ullam cumque minus error facere enim amet pariatur obcaecati alias quis laborum ratione in nobis magnam blanditiis? Nobis quibusdam veniam nostrum!</div>
+                    <div className="header-text">
+                      Odkryj świat kulinarnych inspiracji. Znajdziesz tutaj nie tylko najlepsze przepisy, ale także ciekawe diety, które pomogą Ci zadbać o swoje zdrowie i smak. Gotowanie stanie się przyjemnością dzięki naszym sprawdzonym propozycjom!
+                    </div>
                 </div>
             </div>
         </header>

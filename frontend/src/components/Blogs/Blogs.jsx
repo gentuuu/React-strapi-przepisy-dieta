@@ -37,6 +37,7 @@ const Blogs = () => {
         <div className="page-blogs">
             <div className="container">
                 <div className="page-blogs-content">
+                    <div className="page-blogs-title">Nasze artykuły</div>
                     <div className="page-blogs-items">
                         {data.artykuly.data.map(blog =>(
                             <a key={blog.id} className="page-blogs-item" href={`/artykuly/${blog.attributes.slug}`}> 
@@ -47,7 +48,7 @@ const Blogs = () => {
                                     <div className="page-blogs-item__title">
                                         {blog.attributes.title}
                                     </div>
-                                    <div className="page-blogs-item__text">{blog.attributes.Description.substring(0, 50)}</div>
+                                    <div className="page-blogs-item__text">{blog.attributes.Description}</div>
                                 </div>  
                             </a>
                         ))}     

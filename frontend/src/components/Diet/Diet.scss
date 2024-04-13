@@ -22,6 +22,12 @@
             
         }
     }  
+    .diet-title{
+        margin-left: 35px;
+        @include breakpoint(phone){
+            margin-left: 0px;
+        }
+    }
 }
 
 
@@ -48,11 +54,16 @@
         line-height: 44px;
         letter-spacing: 0.5px;
         color: #333333;
+        @include breakpoint(phone){
+            font-size: 22px;
+            line-height: 24px;
+        }
     }
     &-details{
         display: flex;
         justify-content: space-between;
         margin-top: 30px;
+        align-items: center;
         @include breakpoint(phone){
             flex-direction: column;
         }

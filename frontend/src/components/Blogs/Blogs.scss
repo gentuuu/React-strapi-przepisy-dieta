@@ -3,19 +3,29 @@
 
 .page-blogs{
     padding: 50px 0;
+    &-title{
+        font-family: "Heebo", sans-serif;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 32px;
+        line-height: 37px;
+        letter-spacing: 0.5px;
+        color: #333333;
+    }
     &-items{
+        margin-top: 25px;
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         grid-gap: 35px;
         @include breakpoint(tab-land){
-            grid-template-columns: repeat(3, 1fr);
-        }
-        @include breakpoint(phone){
             grid-template-columns: repeat(2, 1fr);
         }
-        @include breakpoint(xs){
+        @include breakpoint(phone){
             grid-template-columns: repeat(1, 1fr);
         }
+        // @include breakpoint(xs){
+        //     grid-template-columns: repeat(1, 1fr);
+        // }
     }
 
     &-item {
@@ -25,32 +35,52 @@
         &:nth-child(1) {
             grid-column: 1 / 4;
             display: flex;
+            padding: 10px;
             @include breakpoint(tab-land){
-                grid-column: 1 / 3;
+                grid-column: 1 / 2;
                 flex-direction: column;
             }
-            @include breakpoint(phone){
-                grid-column: 1 / 2;
-            }
+            // @include breakpoint(phone){
+            //     grid-column: 1 / 2;
+            // }
             & .page-blogs-item-row {
-                width: 50%;
+                width: 40%;
+                @include breakpoint(tab-land){
+                    width: 100%;
+                }
             }
             & .page-blogs-item__img {
-                width: 600px;
-                height: 437px;
+                width: 60%;
+                height: auto;
                 margin-right: 44px;
                 @include breakpoint(tab-land){
-                    height: auto;
+                    height: 303px;
                     width: 100%;
+                }
+            }
+            & .page-blogs-item__title{
+                padding: 10px 0;
+            }
+            & .page-blogs-item__text{
+                font-family: "Heebo", sans-serif;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 14px;
+                line-height: 22px;
+                letter-spacing: 0.5px;
+                color: #000000; 
+                display: inline;
+                @include breakpoint(tab-land){
+                    display: none;
                 }
             }
           
         }
         &__img {
             height: 303px; 
-            @include breakpoint(tab-land){
-                height: auto;
-            }
+            // @include breakpoint(tab-land){
+            //     height: auto;
+            // }
             & img {
                 width: 100%;
                 height: 100%;
@@ -66,17 +96,10 @@
             line-height: 22px;
             letter-spacing: 0.5px;
             color: #000000;
-            margin-top: 22px;
-            padding-bottom: 15px; 
+            padding: 10px;
         }
         &__text {
-            font-family: "Heebo", sans-serif;
-            font-style: normal;
-            font-weight: normal;
-            font-size: 14px;
-            line-height: 22px;
-            letter-spacing: 0.5px;
-            color: #000000; 
+            display: none;
         }
         &-row {
             // width: 50%;

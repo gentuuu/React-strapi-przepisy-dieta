@@ -25,6 +25,10 @@
         line-height: 44px;
         letter-spacing: 0.5px;
         color: #333333;
+        @include breakpoint(phone){
+            font-size: 23px;
+            line-height: 35px;
+        }
     }
     &-details{
         display: flex;
@@ -36,6 +40,7 @@
     }
     &__img{
         width: 50%;
+        height: fit-content;
         @include breakpoint(phone){
             width: 100%;
         }
